@@ -1,4 +1,4 @@
-# claude-rtl-persian
+# claude-persian
 
 RTL and Persian text support for Claude environments. A pnpm monorepo containing three
 tools that share one core library:
