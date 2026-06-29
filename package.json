@@ -1,0 +1,16 @@
+{
+  "name": "claude-rtl-persian",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RTL and Persian text support tools for Claude environments (MCP server, VS Code extension, userscript)",
+  "scripts": {
+    "build:all": "pnpm -r build",
+    "test": "pnpm -r test",
+    "clean": "pnpm -r exec rm -rf dist build/*.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
+  }
+}
