@@ -1,0 +1,23 @@
+{
+  "name": "mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server exposing RTL/Persian text tools to Claude Code",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "rtl-persian-mcp": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "start": "node dist/index.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.4.0",
+    "rtl-core": "workspace:*",
+    "zod": "^3.23.8"
+  },
+  "license": "MIT"
+}
