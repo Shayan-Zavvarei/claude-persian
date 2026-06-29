@@ -1,0 +1,70 @@
+{
+  "name": "rtl-persian",
+  "displayName": "RTL Persian",
+  "description": "RTL and Persian text support for the editor and Claude for VS Code",
+  "version": "1.0.0",
+  "publisher": "claude-rtl-persian",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other", "Formatters"],
+  "main": "./dist/extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "bundle": "node esbuild.config.mjs",
+    "build": "pnpm typecheck && pnpm bundle",
+    "dev": "node esbuild.config.mjs --watch",
+    "vscode:prepublish": "pnpm build",
+    "package": "pnpm build && vsce package --no-dependencies"
+  },
+  "contributes": {
+    "commands": [
+      { "command": "rtl-persian.toggleDirection", "title": "RTL Persian: Toggle Direction" },
+      { "command": "rtl-persian.fixCurrentFile", "title": "RTL Persian: Fix Current File" },
+      { "command": "rtl-persian.fixSelection", "title": "RTL Persian: Fix Selection" },
+      { "command": "rtl-persian.normalizeFile", "title": "RTL Persian: Normalize Persian Characters" },
+      { "command": "rtl-persian.insertRLM", "title": "RTL Persian: Insert Right-to-Left Mark (RLM)" }
+    ],
+    "keybindings": [
+      {
+        "command": "rtl-persian.toggleDirection",
+        "key": "ctrl+shift+f",
+        "mac": "cmd+shift+f",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "RTL Persian",
+      "properties": {
+        "rtlPersian.autoDetect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically detect Persian-heavy files and offer to apply RTL settings."
+        },
+        "rtlPersian.threshold": {
+          "type": "number",
+          "default": 0.3,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Minimum ratio of Persian characters for a file to be treated as RTL."
+        },
+        "rtlPersian.fontFamily": {
+          "type": "string",
+          "default": "Vazirmatn, Tahoma, sans-serif",
+          "description": "Font family suggested for Persian text."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "rtl-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.31.1",
+    "esbuild": "^0.23.1"
+  }
+}
